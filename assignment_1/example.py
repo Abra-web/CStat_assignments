@@ -54,7 +54,7 @@ r2_scores = []
 # EXPERIMENT WITH THE NUMBER OF PARAMETERS
 
 # print(len(data))
-data= data.sample(n=500)
+# data= data.sample(n=10000)
 data.rename(columns = {' shares':'shares'}, inplace = True)
 data = data.drop(['url'], axis=1)
 
@@ -69,7 +69,6 @@ random.seed(10)
 for i in range(1,len(X_train.columns)):
     X_sliced_train = X_train.iloc[:, :i]
     X_sliced_test = X_test.iloc[:, :i]
-
 
 
     r2, r2_adjusted = build_model(X_sliced_train, y_train, X_sliced_test, y_test)
