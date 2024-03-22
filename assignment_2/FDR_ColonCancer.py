@@ -33,6 +33,7 @@ n_iterations = 100
 # Array to store bootstrap coefficients
 bootstrap_coefs = []
 
+
 # Bootstrap loop
 for i in range(n_iterations):
     # Resample the training data
@@ -42,8 +43,11 @@ for i in range(n_iterations):
     boot_model = LogisticRegression()
     boot_model.fit(X_boot, y_boot)
 
+
+
     # Store coefficients
     bootstrap_coefs.append(boot_model.coef_[0])
+
 
 # Calculate p-values
 original_coefs = logistic_model.coef_[0]
@@ -60,6 +64,7 @@ p_values_df = pd.DataFrame({'Coefficient': coef_names, 'P-value': p_values})
 #CHANGE THIS TO CRT FIRST AND THEN BHq - plug p_values into CRT and insert crt pvalues into this line below
 p_values_df['corrected_p_values'] = stats.false_discovery_control(p_values)
 
+
 import seaborn as sns
 
 sns.histplot(data=p_values_df, x='P-value', kde=True,
@@ -71,3 +76,7 @@ sns.histplot(data=p_values_df, x='corrected_p_values', kde=True,
              bins=20).set_title('Hisgoragram of pvalues after BHq')
 
 plt.show()
+
+
+
+
